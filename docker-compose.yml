@@ -39,7 +39,7 @@ services:
       ADMINER_DEFAULT_SERVER: postgres
     # http://localhost:8080/?pgsql=postgres&server=postgres&username=user&db=rpg
 
-  flask-app:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
@@ -53,7 +53,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./src:/app
-    depends_on:
-      - postgres
-      - minio
+      - .:/app
+    # depends_on:
+    #   - postgres
+    #   - minio
