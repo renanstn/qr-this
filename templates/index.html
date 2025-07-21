@@ -9,9 +9,9 @@
   <body class="d-flex align-items-center justify-content-center vh-100">
     <div class="text-center">
       <h1>QR This</h1>
-      <form>
+      <form action="{{ url_for('home') }}" method="post" enctype="multipart/form-data">
         <div class="mb-3">
-          <input class="form-control" type="file" id="formFile">
+          <input class="form-control" type="file" name="formFile" id="formFile" required>
         </div>
         <button type="submit" class="btn btn-primary">QR this</button>
       </form>
