@@ -28,8 +28,8 @@ services:
     command: |
       "sleep 5 && \
       mc alias set local http://minio:9000 minioadmin minioadmin && \
-      mc mb local/rpg && \
-      mc anonymous set download local/rpg"
+      mc mb local/qr && \
+      mc anonymous set download local/qr"
 
   adminer:
     image: adminer
@@ -41,7 +41,7 @@ services:
 
   flask-app:
     build:
-      context: src
+      context: .
       dockerfile: Dockerfile
     environment:
       FLASK_APP: app.py
