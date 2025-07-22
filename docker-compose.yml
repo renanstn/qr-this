@@ -8,6 +8,8 @@ services:
       POSTGRES_DB: qr_app
     ports:
       - "5432:5432"
+    volumes:
+      - ./init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
 
   bucket:
     image: minio/minio
@@ -39,7 +41,7 @@ services:
       ADMINER_DEFAULT_SERVER: postgres
     depends_on:
       - db
-    # http://localhost:8080/?pgsql=postgres&server=postgres&username=user&db=rpg
+    # http://localhost:8080/?pgsql=postgres&server=db&username=user&db=qr_app
 
   app:
     build:
@@ -48,7 +50,7 @@ services:
     environment:
       FLASK_APP: app.py
       FLASK_ENV: development
-      DATABASE_URL: postgresql://user:password@postgres:5432/rpg
+      DATABASE_URL: postgresql://user:password@db:5432/qr_app
       MINIO_ENDPOINT: bucket:9000
       MINIO_ACCESS_KEY: minioadmin
       MINIO_SECRET_KEY: minioadmin

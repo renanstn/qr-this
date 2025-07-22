@@ -19,11 +19,11 @@ def create_bucket_if_not_exist():
         minio_client.make_bucket(MINIO_BUCKET_NAME)
 
 
-def upload_file(file):
+def upload_file(file, file_name):
     object_size = os.fstat(file.fileno()).st_size
     minio_client.put_object(
         MINIO_BUCKET_NAME,
-        file.filename,
+        file_name,
         file,
         object_size,
     )
