@@ -38,6 +38,12 @@ def home():
                 connection.commit()
         finally:
             connection_pool.putconn(connection)
-        return "<p>Image uploaded!</p>"
+        return f"File name: {file_name}"
     else:
         return render_template("index.html")
+
+
+@app.route("/load/<file_id>")
+def load_file(file_id):
+    file_url = get_minio_path(file_id)
+    return render_template("show.html", file_url=file_url)

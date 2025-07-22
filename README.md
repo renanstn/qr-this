@@ -10,6 +10,6 @@ Obtenha facilmente QR codes de imagens através deste app.
 
 ## TODO
 
-- [ ] Implementar script de limpeza do Minio
 - [ ] Implementar enpoint de exibição da imagem armazenada
 - [ ] Gerar QR code no envio de arquivos
+- [ ] Implementar script de limpeza do Minio
