@@ -1,0 +1,30 @@
+import os
+import uuid
+from werkzeug.utils import secure_filename
+from bucket import (
+    MINIO_BUCKET_NAME,
+    minio_client,
+    create_bucket_if_not_exist,
+    upload_file,
+    get_minio_path,
+)
+
+
+def handle_file_upload(file):
+    file_id = uuid.uuid4()
+    file_name_id = uuid.uuid4().hex
+    original_filename = secure_filename(file.filename)
+    _, ext = os.path.splitext(original_filename)
+    file_name = f"{file_name_id}{ext}"
+    create_bucket_if_not_exist()
+    upload_file(file, file_name)
+    return file_name
+
+
+def handle_load_image(file_id):
+    file_url = get_minio_path(file_id)
+    return file_url
+
+
+def handle_qr_code_generation():
+    pass
