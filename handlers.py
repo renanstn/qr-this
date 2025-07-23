@@ -26,7 +26,7 @@ def handle_load_image(file_id):
 
 
 def handle_qr_code_generation(file_name):
-    link = f"{request.url_root}/show/{file_name}"
+    link = f"{request.url_root}show/{file_name}"
     image = qrcode.make(link)
     buffer = BytesIO()
     image.save(buffer, format="PNG")
