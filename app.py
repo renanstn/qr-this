@@ -22,7 +22,7 @@ def home():
         file = request.files["formFile"]
         file_name = handle_file_upload(file)
         qr_code = handle_qr_code_generation(file_name)
-        return sendf_ile(qr_code, mimetype="image/png")
+        return send_file(qr_code, mimetype="image/png")
     else:
         return render_template("index.html")
 
