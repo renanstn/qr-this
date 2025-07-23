@@ -1,7 +1,12 @@
 import os
-from flask import Flask, render_template, request
-from handlers import handle_file_upload, handle_load_image
 
+from flask import Flask, render_template, request, send_file
+
+from handlers import (
+    handle_file_upload,
+    handle_load_image,
+    handle_qr_code_generation,
+)
 
 app = Flask(__name__)
 
@@ -16,7 +21,8 @@ def home():
     if request.method == "POST":
         file = request.files["formFile"]
         file_name = handle_file_upload(file)
-        return f"File name: {file_name}"
+        qr_code = handle_qr_code_generation(file_name)
+        return send_file(qr_code, mimetype="image/png")
     else:
         return render_template("index.html")
 

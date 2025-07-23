@@ -1,12 +1,16 @@
 import os
 import uuid
+from io import BytesIO
+
+import qrcode
 from werkzeug.utils import secure_filename
+
 from bucket import (
     MINIO_BUCKET_NAME,
-    minio_client,
     create_bucket_if_not_exist,
-    upload_file,
     get_minio_path,
+    minio_client,
+    upload_file,
 )
 
 
@@ -26,5 +30,9 @@ def handle_load_image(file_id):
     return file_url
 
 
-def handle_qr_code_generation():
-    pass
+def handle_qr_code_generation(link):
+    image = qrcode.make(link)
+    buffer = BytesIO()
+    image.save(buffer, format="PNG")
+    buffer.seek(0)
+    return buffer

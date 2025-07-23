@@ -1,6 +1,6 @@
 import os
-from minio import Minio
 
+from minio import Minio
 
 MINIO_BUCKET_NAME = "qr-app"
 
