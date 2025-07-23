@@ -30,5 +30,5 @@ def upload_file(file, file_name):
 
 
 def get_minio_path(file_name):
-    base_url = "localhost:9000"
+    base_url = os.getenv("MINIO_ENDPOINT")
     return f"http://{base_url}/{MINIO_BUCKET_NAME}/{file_name}"
