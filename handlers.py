@@ -3,15 +3,10 @@ import uuid
 from io import BytesIO
 
 import qrcode
+from flask import request
 from werkzeug.utils import secure_filename
 
-from bucket import (
-    MINIO_BUCKET_NAME,
-    create_bucket_if_not_exist,
-    get_minio_path,
-    minio_client,
-    upload_file,
-)
+from bucket import create_bucket_if_not_exist, get_minio_path, upload_file
 
 
 def handle_file_upload(file):
@@ -30,7 +25,9 @@ def handle_load_image(file_id):
     return file_url
 
 
-def handle_qr_code_generation(link):
+def handle_qr_code_generation(file_name):
+    link = request.url_root
+    print(link)
     image = qrcode.make(link)
     buffer = BytesIO()
     image.save(buffer, format="PNG")

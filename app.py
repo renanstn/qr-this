@@ -22,12 +22,12 @@ def home():
         file = request.files["formFile"]
         file_name = handle_file_upload(file)
         qr_code = handle_qr_code_generation(file_name)
-        return send_file(qr_code, mimetype="image/png")
+        return sendf_ile(qr_code, mimetype="image/png")
     else:
         return render_template("index.html")
 
 
-@app.route("/load/<file_id>")
+@app.route("/show/<file_id>")
 def load_file(file_id):
     file_url = handle_load_image(file_id)
     return render_template("show.html", file_url=file_url)
