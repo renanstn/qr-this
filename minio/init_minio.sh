@@ -7,4 +7,4 @@ mc alias set local http://localhost:9000 "$MINIO_ROOT_USER" "$MINIO_ROOT_PASSWOR
 mc mb --ignore-existing local/qr-app
 mc anonymous set download local/qr-app
 
-exec minio server /data --console-address ":9001"
+exec server /data --console-address ":9001"
