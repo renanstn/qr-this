@@ -29,7 +29,7 @@ def home():
 
 
 @app.route("/load/<file_id>")
-def load_file(file_id):
+def get_file(file_id):
     stored_file = load_file(file_id)
     return Response(stored_file, mimetype="image/png")
 
