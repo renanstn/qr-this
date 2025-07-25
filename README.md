@@ -2,7 +2,7 @@
 
 [![Check Python Style with Black](https://github.com/renanstn/qr-this/actions/workflows/black-check.yml/badge.svg)](https://github.com/renanstn/qr-this/actions/workflows/black-check.yml)
 
-## Disponível em:
+## Disponível em
 
 https://qr-this.up.railway.app/
 
