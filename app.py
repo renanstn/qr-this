@@ -1,13 +1,13 @@
 import os
 
-from flask import Flask, render_template, request, send_file, Response
+from flask import Flask, Response, render_template, request, send_file
 
+from bucket import load_file
 from handlers import (
     handle_file_upload,
     handle_load_image,
     handle_qr_code_generation,
 )
-from bucket import load_file
 
 app = Flask(__name__)
 
@@ -31,7 +31,8 @@ def home():
 @app.route("/load/<file_id>")
 def load_file(file_id):
     stored_file = load_file(file_id)
-    return Response(stored_file, mimetype='image/png')
+    return Response(stored_file, mimetype="image/png")
+
 
 @app.route("/show/<file_id>")
 def show_file(file_id):
