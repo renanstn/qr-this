@@ -28,9 +28,12 @@ def home():
         return render_template("index.html")
 
 
-@app.route("/show/<file_id>")
+@app.route("/load/<file_id>")
 def load_file(file_id):
-    # file_url = handle_load_image(file_id)
-    # return render_template("show.html", file_url=file_url)
     stored_file = load_file(file_id)
     return Response(stored_file, mimetype='image/png')
+
+@app.route("/show/<file_id>")
+def show_file(file_id):
+    file_url = f"{request.url_root}load/{file_id}"
+    return render_template("show.html", file_url=file_url)
